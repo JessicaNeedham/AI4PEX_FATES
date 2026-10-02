@@ -1,0 +1,112 @@
+!------------------------------------------------------------------------
+! This file is used to modify datm.streams.xml generated in $RUNDIR
+! Entries should have the form
+!  <streamname>:<stream_variable>= <new stream_value> (NO Quotes!!!)
+! The following are accepted values for a stream named foo
+!  foo:meshfile = character string
+!  foo:datafiles = comma separated string of full pathnames (e.g. file1,file2,file3...)
+!  foo:datavars = comma separated string of field pairs  (e.g. foo foobar,foo2 foobar2...)
+!  foo:taxmode = one of [cycle, extend, limit]
+!  foo:tintalgo = one of [lower,upper,nearest,linear,coszen]
+!  foo:readmode = single (only suported mode right now)
+!  foo:mapalgo = one of [bilinear,redist,nn,consf,consd,none]
+!  foo:dtlimit = real (1.5 is default)
+!  foo:year_first = integer
+!  foo:year_last = integer
+!  foo:year_align = integer
+!  foo:vectors = null or the names of the vector fields in the model (i.e. Sa_u:Sa_v)
+!  foo:lev_dimname: = one of [null,name of level dimenion name]
+!  foo:offset = integer
+! As an example:
+!   foo:year_first = 1950
+! would change the stream year_first stream_entry to 1950 for the foo stream block
+! NOTE: multi-line inputs are enabled by adding a \ at the end of the line
+! As an emaple:
+! foo:datafiles=foo1,foo2, \
+!     foo3
+! Will yield the following new entry for datafiles in stream foo
+!   <datafiles>
+!      <file>foo1</file>
+!      <file>foo2</file>
+!      <file>foo3</file>
+!   </datafiles>
+!------------------------------------------------------------------------
+CLMCRUJRA2024b.Solar:meshfile=/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/ESMFmesh_CRUJRAv4.10_0.5x0.5_260803.nc
+CLMCRUJRA2024b.Solar:year_first=1901
+CLMCRUJRA2024b.Solar:year_last=1920
+CLMCRUJRA2024b.Solar:datavars=FSDS_DIFFUSE Faxa_swdndf, FSDS_DIRECT Faxa_swdndr, FSDS_DIRECT Faxa_swdn
+CLMCRUJRA2024b.Solar:datafiles=/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1901.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1902.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1903.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1904.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1905.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1906.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1907.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1908.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1909.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1910.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1911.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1912.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1913.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1914.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1915.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1916.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1917.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1918.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1919.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Solr_Diffuse.1920.nc
+
+
+CLMCRUJRA2024b.Precip:meshfile=/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/ESMFmesh_CRUJRAv4.10_0.5x0.5_260803.nc
+CLMCRUJRA2024b.Precip:year_first=1901
+CLMCRUJRA2024b.Precip:year_last=1920
+CLMCRUJRA2024b.Precip:datafiles=/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1901.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1902.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1903.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1904.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1905.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1906.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1907.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1908.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1909.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1910.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1911.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1912.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1913.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1914.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1915.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1916.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1917.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1918.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1919.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.Prec.1920.nc
+
+CLMCRUJRA2024b.TPQW:meshfile=/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/ESMFmesh_CRUJRAv4.10_0.5x0.5_260803.nc
+CLMCRUJRA2024b.TPQW:year_first=1901
+CLMCRUJRA2024b.TPQW:year_last=1920
+CLMCRUJRA2024b.TPQW:datafiles=/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1901.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1902.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1903.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1904.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1905.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1906.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1907.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1908.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1909.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1910.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1911.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1912.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1913.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1914.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1915.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1916.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1917.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1918.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1919.nc, \
+/cluster/shared/noresm/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1920.nc
+
+co2tseries.20tr:datafiles=/cluster/shared/noresm/inputdata/TRENDY2026/inputs/CO2field/fco2_datm_global_simyr_1700-2025_TRENDY_c260722.nc
+co2tseries.20tr:year_first=1850
+co2tseries.20tr:year_last=1900
+co2tseries.20tr:year_align=1850
+co2tseries.cmip7_20tr:datavars=CO2 Sa_co2diag

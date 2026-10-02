@@ -1,0 +1,89 @@
+#!/bin/bash
+
+export COMPSET='1850_DATM%CRUJRA2024b_CLM60%FATES-NCFB%NORESM_SICE_SOCN_SROF_SGLC_SWAV'
+export RES=f09_g17   #"ne16pg3_tn14"   # "f45_f45_mg37" # ne16pg3_tn14, #f19_g17, ne30pg3_tn14, f45_f45_mg37, ne16pg3_tn14
+export MACH='betzy'
+export PROJECT='nn9188k'
+
+export USER='jessica'
+export workpath='/cluster/work/users/jessica'
+
+export TAG='noresm-fates_ai4pex_AD-spinup_potential_veg'
+export CASEROOT=$workpath/AI4PEX_runs
+export CIMEROOT=$workpath/noresm-ai4pex/CTSM/cime/scripts
+
+cd ${CIMEROOT}
+
+export CIME_HASH=`git log -n 1 --pretty=%h`
+export NorESM_CTSM_HASH=`(cd ../..;git log -n 1 --pretty=%h)`
+echo $PWD
+export FATES_HASH=`(cd src/fates;git log -n 1 --pretty=%h)`
+export GIT_HASH=N${NorESM_CTSM_HASH}-F${FATES_HASH}	
+export CASE_NAME=${CASEROOT}/${TAG}.`date +"%Y-%m-%d"`
+
+
+# REMOVE EXISTING CASE DIRECTORY IF PRESENT 
+rm -rf ${CASE_NAME}
+
+# CREATE THE CASE
+./create_newcase --case=${CASE_NAME} --res=${RES} --compset=${COMPSET} --mach=${MACH} --project=${PROJECT} --run-unsupported --pecount L
+
+cd ${CASE_NAME}
+
+#
+./xmlchange STOP_N=25
+./xmlchange STOP_OPTION=nyears
+./xmlchange REST_N=25
+./xmlchange REST_OPTION=nyears
+./xmlchange RESUBMIT=9
+./xmlchange DEBUG=FALSE
+
+./xmlchange RUN_STARTDATE=0001-01-01
+./xmlchange CLM_ACCELERATED_SPINUP=on
+./xmlchange CLM_FORCE_COLDSTART=on
+./xmlchange CLM_CO2_TYPE=constant
+./xmlchange CCSM_CO2_PPMV=277.58
+./xmlchange DATM_YR_ALIGN=1
+./xmlchange DATM_YR_START=1901
+./xmlchange DATM_YR_END=1920
+./xmlchange DATM_PRESAERO=clim_1850
+
+
+# turn on megan for NCSrevise runs
+./xmlchange CLM_BLDNML_OPTS="-bgc fates -megan"
+
+# For real runs
+./xmlchange --subgroup case.run JOB_WALLCLOCK_TIME=24:00:00
+./xmlchange --subgroup case.st_archive JOB_WALLCLOCK_TIME=00:30:00
+
+./xmlchange NTASKS_CPL=1536
+./xmlchange NTASKS_ATM=256
+./xmlchange NTASKS_LND=1536
+./xmlchange ROOTPE_CPL=256
+./xmlchange ROOTPE_ATM=0
+./xmlchange ROOTPE_LND=256
+
+./xmlchange RUNDIR=${CASE_NAME}/run
+./xmlchange EXEROOT=${CASE_NAME}/bld
+
+
+cat >>  user_nl_clm <<EOF
+fsurdat='/cluster/work/users/jessica/wiemip_misc/surfdata_0.9x1.25_hist_1850_16pfts_WIEMIP_c260408.nc'
+do_transient_lakes=.false.
+do_transient_urban=.false.
+use_fates_sp=.false.
+use_fates_nocomp=.true.
+use_fates_fixed_biogeog=.true.
+use_fates_luh=.true.
+use_fates_lupft=.true.
+use_fates_potentialveg=.true.
+flandusepftdat='/cluster/shared/noresm/inputdata/TRENDY2026/inputs/LU_files/fates_landuse_pft_surfdata_0.9x1.25_c260803.nc'
+hist_empty_htapes=.true.
+hist_fincl1='FCO2','FATES_PRIMARY_AREA_AP','FATES_VEGC_PF', 'FATES_LAI', 'FATES_GPP_PF'
+EOF
+
+cp /cluster/home/jessica/AI4PEX/ai4pex_spinup_datm_streams user_nl_datm_streams
+
+./case.setup
+./case.build
+./case.submit
