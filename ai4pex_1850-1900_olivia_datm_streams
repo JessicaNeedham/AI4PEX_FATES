@@ -105,8 +105,8 @@ CLMCRUJRA2024b.TPQW:datafiles=/cluster/work/projects/nn9560k/inputdata/TRENDY202
 /cluster/work/projects/nn9560k/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1919.nc, \
 /cluster/work/projects/nn9560k/inputdata/TRENDY2026/inputs/three_stream/clmforc.CRUJRAv4.10_0.5x0.5.TPQWL.1920.nc
 
-co2tseries.20tr:datafiles=/cluster/work/projects/nn9560k/inputdata/TRENDY2026/inputs/CO2field/fco2_datm_global_simyr_1700-2025_TRENDY_c260722.nc
-co2tseries.20tr:year_first=1850
-co2tseries.20tr:year_last=1900
-co2tseries.20tr:year_align=1850
+co2tseries.cmip7_20tr:datafiles=/cluster/work/projects/nn9560k/inputdata/TRENDY2026/inputs/CO2field/fco2_datm_global_simyr_1700-2025_TRENDY_c260722.nc
+co2tseries.cmip7_20tr:year_first=1851
+co2tseries.cmip7_20tr:year_last=1900
+co2tseries.cmip7_20tr:year_align=1851
 co2tseries.cmip7_20tr:datavars=CO2 Sa_co2diag
