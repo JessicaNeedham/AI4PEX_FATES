@@ -2,11 +2,11 @@
 
 export COMPSET='HIST_DATM%CRUJRA2024b_CLM60%FATES-NCFB%NORESM_SICE_SOCN_SROF_SGLC_SWAV'
 export RES=f09_g17   # "f45_f45_mg37" # ne16pg3_tn14, #, ne30pg3_tn14, f45_f45_mg37, ne16pg3_tn14
-export MACH='betzy'
+export MACH='olivia'
 export PROJECT='nn9188k'
 
 export USER='jessica'
-export workpath='/cluster/work/users/jessica'
+export workpath='/cluster/work/projects/nn9188k/jessica'
 
 export TAG='noresm-fates_ai4pex_1901-2024_potentialveg'
 export CASEROOT=$workpath/AI4PEX_runs
@@ -64,8 +64,8 @@ cd ${CASE_NAME}
 
 
 cat >>  user_nl_clm <<EOF
-finidat=''
-fsurdat='/cluster/work/users/jessica/wiemip_misc/surfdata_0.9x1.25_hist_1850_16pfts_WIEMIP_c260408.nc'
+finidat='/cluster/work/projects/nn9188k/jessica/AI4PEX_runs/noresm-fates_ai4pex_1850-1900_potentialveg.2026-10-15/run/noresm-fates_ai4pex_1850-1900_potentialveg.2026-10-15.clm2.r.1901-01-01-00000.nc'
+fsurdat='/cluster/work/projects/nn9560k/inputdata/TRENDY2026/inputs/surfdata_0.9x1.25_hist_1850_16pfts_WIEMIP_c260408.nc'
 do_transient_lakes=.false.
 do_transient_urban=.false.
 irrigate=.false.
@@ -75,7 +75,7 @@ use_fates_fixed_biogeog=.true.
 use_fates_luh=.true.
 use_fates_lupft=.true.
 use_fates_potentialveg=.true.
-flandusepftdat='/cluster/work/users/jessica/wiemip_misc/fates_landuse_pft_surfdata_0.9x1.25_c260515.nc'
+flandusepftdat='/cluster/work/projects/nn9560k/inputdata/TRENDY2026/inputs/LU_files/fates_landuse_pft_surfdata_0.9x1.25_c260803.nc'
 hist_empty_htapes=.true.
 hist_mfilt = 1,1
 hist_nhtfrq = 0, -8760
@@ -83,7 +83,7 @@ hist_fincl1='FATES_GPP', 'MEG_acetone', 'MEG_methanol', 'MEG_isoprene', 'MEG_pin
 'MEG_carene_3', 'MEG_ethanol', 'MEG_formaldehyde', 'MEG_acetaldehyde', 'MEG_acetic_acid'
 hist_fincl2 = 'FATES_VEGC_SZ', 'FATES_LEAFC_SZPF', 'FATES_STOREC_SZPF', 'FATES_FROOTC_SZPF', 'FATES_REPROC_SZPF',
 'FATES_NPLANT_SZ', 'FATES_NOCOMP_PATCHAREA_PF', 'FATES_VEGC_PF', 'FATES_LAI_PF', 'FATES_CROWNAREA_PF', 
-'FATES_BASALAREA_SZPF', 'FATES_MEAN_95PCTILE_HEIHGT', 'FSR', 'FSDS', 
+'FATES_BASALAREA_SZPF', 'FATES_MEAN_95PCTILE_HEIGHT', 'FSR', 'FSDS', 
 'FATES_STRUCT_ALLOC_USTORY_SZ', 'FATES_STRUCT_ALLOC_CANOPY_SZ', 'FATES_SAPWOOD_ALLOC_USTORY_SZ',
 'FATES_SAPWOOD_ALLOC_CANOPY_SZ', 'FATES_BGSTRUCT_ALLOC_SZPF', 'FATES_BGSAPWOOD_ALLOC_SZPF', 
 'FATES_AGSTRUCT_ALLOC_SZPF', 'FATES_AGSAPWOOD_ALLOC_SZPF',
